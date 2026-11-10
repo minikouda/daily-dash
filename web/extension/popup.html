@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root { --bg:#fff; --fg:#1c1b19; --fg3:#8f8a83; --line:#e7e5e0; --hover:#f3f2ef; --accent:#4f46e5; --red:#d4382c; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1c1c1d; --fg:#ededeb; --fg3:#7d7a75; --line:#2a2a2b; --hover:#252526; --accent:#8b85ff; --red:#ff6b5f; } }
+  body { margin:0; width:280px; background:var(--bg); color:var(--fg); font:13px/1.4 -apple-system,BlinkMacSystemFont,sans-serif; }
+  header { display:flex; align-items:center; gap:8px; padding:12px 14px; border-bottom:1px solid var(--line); font-weight:600; font-size:14px; }
+  .logo { width:20px; height:20px; border-radius:6px; background:#4f46e5; display:grid; place-items:center; }
+  .stats { display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:12px 14px; }
+  .stat { border:1px solid var(--line); border-radius:10px; padding:8px 10px; }
+  .stat b { display:block; font-size:20px; font-weight:600; }
+  .stat span { color:var(--fg3); font-size:12px; }
+  .stat.red b { color:var(--red); }
+  .actions { padding:4px 8px 10px; }
+  button { all:unset; box-sizing:border-box; display:flex; width:100%; align-items:center; gap:10px; padding:8px 8px; border-radius:8px; cursor:pointer; }
+  button:hover { background:var(--hover); }
+  kbd { margin-left:auto; font:11px ui-monospace,monospace; color:var(--fg3); }
+  .note { padding:0 14px 12px; color:var(--fg3); font-size:12px; }
+  .off { padding:14px; color:var(--fg3); }
+  #confirm { margin:4px 8px 6px; padding:10px; border:1px solid var(--line); border-radius:10px; }
+  #confirm .q { font-weight:600; margin-bottom:8px; }
+  #confirm .row { display:flex; justify-content:flex-end; gap:6px; }
+  button.small { width:auto; padding:5px 12px; border-radius:7px; font-weight:500; }
+  button.primary { background:var(--accent); color:#fff; }
+  button.primary:hover { background:var(--accent); opacity:.9; }
+</style>
+</head>
+<body>
+  <header>
+    <span class="logo"><svg viewBox="0 0 32 32" width="13" height="13"><path d="M9 16.5l4.5 4.5L23 11" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    Daily Dash
+  </header>
+  <div id="body"><div class="off">Loading…</div></div>
+  <div class="actions">
+    <button data-open="/">Open dashboard <kbd>⌥⇧D</kbd></button>
+    <button data-open="/inbox">Triage inbox</button>
+    <button id="ask">Ask Claude <kbd>⌥⇧A</kbd></button>
+    <button id="refresh">Check mail now</button>
+    <div id="confirm" hidden>
+      <div class="q">Check mail now?</div>
+      <div class="row"><button id="no" class="small">No</button><button id="yes" class="small primary">Check now</button></div>
+    </div>
+  </div>
+  <div class="note" id="note"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

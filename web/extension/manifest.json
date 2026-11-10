@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Daily Dash for Gmail",
+  "version": "0.4.0",
+  "description": "Daily Dash inside Gmail: live counts, a dashboard shortcut, and a floating Ask Claude window that reads the email or list you're viewing.",
+  "icons": { "16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "action": { "default_popup": "popup.html", "default_title": "Daily Dash" },
+  "background": { "service_worker": "background.js" },
+  "permissions": ["alarms"],
+  "host_permissions": ["http://127.0.0.1:8765/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "open-dashboard": {
+      "suggested_key": { "default": "Alt+Shift+D", "mac": "Alt+Shift+D" },
+      "description": "Open Daily Dash"
+    },
+    "ask-about-email": {
+      "suggested_key": { "default": "Alt+Shift+A", "mac": "Alt+Shift+A" },
+      "description": "Toggle the Ask Claude window in Gmail"
+    }
+  }
+}

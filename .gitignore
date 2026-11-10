@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.pytest_cache/
+
+# Virtual environments
+.venv
+
+# OAuth secrets never belong in the repo
+client_secret*.json
+credentials.json
+node_modules/
+src/daily_dash/web/dist/
+*.tsbuildinfo

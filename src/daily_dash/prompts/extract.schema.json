@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["summary", "todos", "packages", "highlights"],
+  "properties": {
+    "summary": {"type": "string"},
+    "todos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "notes", "due", "kind", "priority", "existing_todo_id", "source_message_id"],
+        "properties": {
+          "title": {"type": "string"},
+          "notes": {"type": "string"},
+          "due": {"type": ["string", "null"]},
+          "kind": {"type": "string", "enum": ["deadline", "payment", "reply", "event", "todo"]},
+          "priority": {"type": "integer", "enum": [1, 2, 3]},
+          "existing_todo_id": {"type": ["integer", "null"]},
+          "source_message_id": {"type": "string"}
+        }
+      }
+    },
+    "packages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tracking_number", "carrier", "order_number", "merchant", "description", "status", "eta", "tracking_url", "source_message_id"],
+        "properties": {
+          "tracking_number": {"type": ["string", "null"]},
+          "carrier": {"type": ["string", "null"]},
+          "order_number": {"type": ["string", "null"]},
+          "merchant": {"type": "string"},
+          "description": {"type": "string"},
+          "status": {"type": "string", "enum": ["ordered", "shipped", "in_transit", "out_for_delivery", "delivered", "exception"]},
+          "eta": {"type": ["string", "null"]},
+          "tracking_url": {"type": ["string", "null"]},
+          "source_message_id": {"type": "string"}
+        }
+      }
+    },
+    "highlights": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["headline", "why", "source_message_id"],
+        "properties": {
+          "headline": {"type": "string"},
+          "why": {"type": "string"},
+          "source_message_id": {"type": "string"}
+        }
+      }
+    }
+  }
+}
